@@ -17,7 +17,7 @@ def is_port_open(port, ip):
 
 
 for port in range(0, 1024):
-    if is_port_open(port, '8.8.8.8')
+    if is_port_open(port, '8.8.8.8'):
         print('port', port, 'jest otwarty')
     else:
         print('port', port, 'jest zamknięty')

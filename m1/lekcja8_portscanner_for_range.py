@@ -1,8 +1,7 @@
 import socket
 
 
-ports = [53, 80, 443]
-for port in ports:
+for port in range(0, 1024):
     mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     mysocket.settimeout(1)
 
@@ -15,5 +14,6 @@ for port in ports:
         print('port', port, 'jest otwarty')
     else:
         print('port', port, 'jest zamknięty')
+
 
     mysocket.close()

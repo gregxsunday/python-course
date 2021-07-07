@@ -15,6 +15,8 @@ while i < len(ports):
 
     if result == 0:
         print('port', port, 'jest otwarty')
+    else:
+        print('port', port, 'jest zamknięty')
 
     mysocket.close()
     i = i + 1

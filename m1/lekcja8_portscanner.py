@@ -9,6 +9,8 @@ result = mysocket.connect_ex(address)
 
 if result == 0:
     print('port', port, 'jest otwarty')
+else:
+    print('port', port, 'jest zamknięty')
 
 mysocket.close()
 
@@ -24,7 +26,10 @@ result = mysocket.connect_ex(address)
 
 if result == 0:
     print('port', port, 'jest otwarty')
+else:
+    print('port', port, 'jest zamknięty')
 
+mysocket.close()
 
 
 mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -38,5 +43,8 @@ result = mysocket.connect_ex(address)
 
 if result == 0:
     print('port', port, 'jest otwarty')
+else:
+    print('port', port, 'jest zamknięty')
+
 
 mysocket.close()

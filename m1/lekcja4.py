@@ -14,3 +14,8 @@ last = fruits.pop()
 
 print(fruits)
 print(last)
+
+fruits_tuple = ('jablko', 'cytryna', 'arbuz')
+
+print(fruits_tuple)
+fruits_tuple.append('winogrono')

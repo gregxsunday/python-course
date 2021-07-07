@@ -19,3 +19,5 @@ fruits_tuple = ('jablko', 'cytryna', 'arbuz')
 
 print(fruits_tuple)
 fruits_tuple.append('winogrono')
+
+address = ('127.0.0.1', 80)

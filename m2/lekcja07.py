@@ -1,6 +1,3 @@
-from os import stat
-
-
 if __name__ == '__main__':
     with open('ffuf.log', 'r') as infile:
         logs = infile.read()

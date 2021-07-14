@@ -39,3 +39,7 @@ Zieloną, na niej zrzadka ciche grusze siedzą.
     '''
 
     print(text)
+
+    job = 'pentester'
+    print(f'job={job}')
+    print(f'{job=}')

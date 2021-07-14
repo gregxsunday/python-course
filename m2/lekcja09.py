@@ -1,4 +1,6 @@
 import re
+from termcolor import colored
+
 
 if __name__ == '__main__':
     with open('ffuf.log', 'r') as infile:
@@ -15,8 +17,9 @@ if __name__ == '__main__':
         js = re.search('\.js$', path)
         if js:
             with open('js.txt', 'a') as outfile:
-                print(path, status_code, size)
+                # print(path, status_code, size)
                 # print(path, status_code, size, file=outfile)
                 # print(f'{path}|{status_code}|{size}', file=outfile)
                 # print(path, status_code, size, file=outfile, sep='|')
-                # print(path, status_code, size, file=outfile, sep='|', end=';\n')
+                print(path, status_code, size, file=outfile, sep='|', end=';\n')
+                print(colored(path, 'red'), colored(status_code, 'green'), colored(size, 'blue'), sep='|', end=';\n')

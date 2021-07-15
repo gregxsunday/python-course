@@ -18,6 +18,8 @@ if __name__ == '__main__':
 
     sess.post('http://127.0.0.1/login', data=data)
 
+    sess.cookies.set("mycookie", "myvalue", domain="127.0.0.1")
+
 
     headers = {
         'Authorization': 'Bearer eyJ...'

@@ -1,0 +1,7 @@
+flask
+pytest
+Flask-SQLAlchemy
+Flask-Session
+Flask-Login
+gunicorn
+Flask-WTF

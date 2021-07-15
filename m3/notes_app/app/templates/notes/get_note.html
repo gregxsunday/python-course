@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<div class="mx-3 px-3">
+    <h1>Moduł 5 - AuthZ</h1>
+
+      <h2>Edytuj</h2>
+
+      <form method="POST" action="{{url_for('notes.modify_note', note_id=note.id)}}">
+        <h3>{{note.name}}</h3>
+
+        <div class="field">
+            <div class="control">
+                <textarea class="input is-large" type="text" name="content" placeholder="Zawartość">
+                  {{note.content|e}}
+                </textarea>
+                
+            </div>
+        </div>
+
+        <button class="button is-block is-info is-large is-fullwidth">Edytuj</button>
+    </form>
+
+
+</div>
+
+{% endblock %}

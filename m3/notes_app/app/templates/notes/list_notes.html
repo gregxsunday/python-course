@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<div class="mx-3 px-3">
+    <h1>Moduł 5 - AuthZ</h1>
+    <h2>Lista Twoich notatek</h2>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ messages[0] }}. <a href="{{ url_for('auth.login') }}">Zaloguj się</a>.
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Zawartość</th>
+            <th scope="col">Data utworzenia</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for note in notes %}
+                <tr>
+                  <td>{{note.name|e}}</td>
+                  <td>{{note.content|e}}</td>
+                  <td>{{note.date.strftime("%Y-%m-%d %H:%M")|e}}</td>
+                  <td><a href="{{ url_for('notes.get_note', note_id=note.id) }}">Edytuj</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+      <br><br>
+      <h2>Dodaj nową notatkę</h2>
+
+      <form method="POST" action="{{url_for('notes.create_note')}}">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="text" name="name" placeholder="Nazwa" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <textarea class="input is-large" type="text" name="content" placeholder="Zawartość"></textarea>
+
+            </div>
+        </div>
+        <input type="hidden" value="{{ csrf_token() }}" name="csrf_token">
+
+        <button class="button is-block is-info is-large is-fullwidth">Utwórz</button>
+    </form>
+
+
+</div>
+
+{% endblock %}

@@ -1,8 +1,10 @@
 import socket
 
 
-ports = [53, 80, 443]
+ports = [53, 80, 443, 444]
 i = 0
+# print(ports[i])``
+# print(len(ports))
 while i < len(ports):
     mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     mysocket.settimeout(1)
@@ -19,5 +21,5 @@ while i < len(ports):
         print('port', port, 'jest zamknięty')
 
     mysocket.close()
-    i = i + 1
-    # i += 1
+    # i = i + 1
+    i += 1

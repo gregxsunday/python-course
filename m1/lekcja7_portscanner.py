@@ -7,6 +7,8 @@ address = ('8.8.8.8', 443)
 result = mysocket.connect_ex(address)
 
 if result == 0:
-    print(f'port jest otwarty')
+    print('port jest otwarty')
+else:
+    print('port jest zamknięty')
 
 mysocket.close()

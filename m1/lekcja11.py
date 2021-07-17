@@ -1,38 +1,25 @@
 import socket
 
-class Port:
-    def __init__(self, ip, port_number):
-        self.ip = ip
-        self.port_number = port_number
+def is_port_open(port, ip):
+    mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    mysocket.settimeout(1)
+
+    address = (ip, port)
+
+    result = mysocket.connect_ex(address)
+    mysocket.close()
+
+    if result == 0:
+        return True
+    else:
+        return False
 
 
-    def check_port(self):
-        mysocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        mysocket.settimeout(1)
-
-        address = (self.ip, self.port_number)
-
-        result = mysocket.connect_ex(address)
-        mysocket.close()
-
-        if result == 0:
-            self.open = True
-        else:
-            self.open = False
-    
-    def print_status(self):
-        if self.open:
-            print(self.port_number, 'open')
-        else:
-            print(self.port_number, 'closed')
-
-    def __str__(self):
-        if self.open:
-            return str(self.port_number) + ' open'
-        else:
-            return str(self.port_number) + ' closed'
-        
-
+# server = {
+#     1: 'closed',
+#     2: 'closed',
+#     3: 'open'
+# }
 
 
 # server = {
@@ -50,13 +37,28 @@ class Port:
 #         },
 # }
 
-ip = '8.8.8.8'
-ports = []
-for port_number in [53, 80, 443]:
-    port = Port(ip, port_number)
-    port.check_port()
-    ports.append(port)
+server = {}
 
-for port in ports:
-    # port.print_status()
+for port in [53, 80, 443]:
+    if is_port_open(port, '8.8.8.8'):
+        server[port] = 'open'
+        # print('port', port, 'jest otwarty')
+    else:
+        server[port] = 'closed'
+        # print('port', port, 'jest zamknięty')
+
+print('# Porty w słowniku')
+for port in server:
     print(port)
+
+print('\n# Porty w słowniku używając .keys()')
+for port in server.keys():
+    print(port)
+
+print('\n# Statusy w słowniku używając .values()')
+for status in server.values():
+    print(status)
+
+print('\n# Porty i statusy w słowniku używając .items()')
+for port, status in server.items():
+    print(port, status)

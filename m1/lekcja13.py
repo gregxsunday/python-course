@@ -2,6 +2,7 @@
 # print(random.randint(0, 100))
 
 # from random import randint
+# print(random.randint(0, 100))
 # print(randint(0, 100))
 
 # from random import randint as myname
@@ -9,5 +10,5 @@
 
 # import requests
 
-# import lekcja11
-# port = lekcja11.Port('8.8.8.8', 53)
+import lekcja12
+port = lekcja12.Port('8.8.8.8', 53)

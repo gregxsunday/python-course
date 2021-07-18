@@ -16,7 +16,7 @@ def is_port_open(port, ip):
 
 
 
-for port in range(0, 1024):
+for port in [53, 80, 443]:
     if is_port_open(port, '8.8.8.8'):
         print('port', port, 'jest otwarty')
     else:

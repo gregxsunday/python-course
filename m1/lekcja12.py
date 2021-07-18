@@ -1,5 +1,11 @@
 import socket
 
+port = {
+    'number': 53,
+    'ip': '8.8.8.8',
+    'status': 'open'
+}
+
 class Port:
     def __init__(self, ip, port_number):
         self.ip = ip
@@ -19,44 +25,10 @@ class Port:
             self.open = True
         else:
             self.open = False
-    
-    def print_status(self):
-        if self.open:
-            print(self.port_number, 'open')
-        else:
-            print(self.port_number, 'closed')
-
-    def __str__(self):
-        if self.open:
-            return str(self.port_number) + ' open'
-        else:
-            return str(self.port_number) + ' closed'
         
-
-
-
-# server = {
-#     1: {
-#         'status': 'closed', 
-#         'service': None
-#         },
-#     2: {
-#         'status': 'closed', 
-#         'service': None
-#         },
-#     3: {
-#         'status': 'open', 
-#         'service': 'Apache'
-#         },
-# }
-
-ip = '8.8.8.8'
-ports = []
-for port_number in [53, 80, 443]:
+if __name__ == '__main__':
+    ip = '8.8.8.8'
+    port_number = 80
     port = Port(ip, port_number)
     port.check_port()
-    ports.append(port)
-
-for port in ports:
-    # port.print_status()
-    print(port)
+    print(port.port_number, port.open)

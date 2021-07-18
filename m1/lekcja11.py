@@ -23,15 +23,15 @@ def is_port_open(port, ip):
 
 
 # server = {
-#     1: {
+#     53: {
 #         'status': 'closed', 
 #         'service': None
 #         },
-#     2: {
+#     80: {
 #         'status': 'closed', 
 #         'service': None
 #         },
-#     3: {
+#     443: {
 #         'status': 'open', 
 #         'service': 'Apache'
 #         },

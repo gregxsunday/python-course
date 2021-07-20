@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+
+<h1>{% if user %} Success! {% else %} Login Failed. {% endif %} </h1>
+<p>{% if user %} Logged in as {{user.login}} {% else %} Invalid credentials. {% endif %} </p>
+
+</body>
+</html>

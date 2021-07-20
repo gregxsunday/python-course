@@ -26,8 +26,10 @@ def test():
     login = request.form.get('login')
     password = request.form.get('password')
     user = User.query.filter_by(login=login, password=password).first()
+    # query = f"SELECT * FROM User WHERE login='{login}' and password='{password}'"
+    # user = db.engine.execute(query).first()
     if user:
-        return f'Logged in as {login}'
+        return f'Logged in as {user.login}'
     return 'Invalid credentials'
 
 

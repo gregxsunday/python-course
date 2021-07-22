@@ -4,12 +4,20 @@ if __name__ == '__main__':
     }
     # print(security['vulnerabilities'])
 
-    try:
-        print(security['vulnerabilities'])
-    except KeyError:
-        print('no such key')
+    # try:
+    #     # print(security['vulnerabilities'])
+    #     print(security['vulns'][4])
+    # except KeyError:
+    #     print('no such key')
 
 
+    # try:
+    #     print(security['vulns'][4])
+    # except (KeyError, IndexError):
+    #     print('no such key')
+
+
+    
     try:
         f = open('ffuf.log')
         print(security['vulns'][4])

@@ -21,5 +21,5 @@ if __name__ == '__main__':
                 # print(path, status_code, size, file=outfile)
                 # print(f'{path}|{status_code}|{size}', file=outfile)
                 # print(path, status_code, size, file=outfile, sep='|')
-                print(path, status_code, size, file=outfile, sep='|', end=';\n')
+                # print(path, status_code, size, file=outfile, sep='|', end=';\n\n')
                 print(colored(path, 'red'), colored(status_code, 'green'), colored(size, 'blue'), sep='|', end=';\n')

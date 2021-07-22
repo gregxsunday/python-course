@@ -1,8 +1,8 @@
 if __name__ == '__main__':
-    infile = open('ffuf.log', 'r')
-    logs = infile.read()
-    print(logs)
-    infile.close()
+    # infile = open('ffuf.log', 'r')
+    # logs = infile.read()
+    # print(logs)
+    # infile.close()
 
     # with open('ffuf.log', 'r') as infile:
     #     logs = infile.read()
@@ -22,5 +22,9 @@ if __name__ == '__main__':
 
     # with open('test.txt', 'a') as outfile:
     #     print('dopisanie', file=outfile)
+
+    with open('test.txt', 'r+') as inoutfile:
+        log = inoutfile.read()
+        print('dopis', file=inoutfile)
 
     

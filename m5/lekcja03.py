@@ -4,6 +4,7 @@ if __name__ == '__main__':
     data = 'xss'
 
     print(sha256(data))
+    print(sha256(data.encode('utf8')))
     print(sha256(data.encode()))
     print(sha256(data.encode()).hexdigest())
 

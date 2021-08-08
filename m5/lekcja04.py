@@ -1,4 +1,4 @@
-from base64 import b64decode, b64encode, decode
+from base64 import b64decode, b64encode
 
 if __name__ == '__main__':
     data = 'Python jest fajny!'

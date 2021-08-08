@@ -18,19 +18,18 @@ if __name__ == '__main__':
         'password': password
     }
 
-    resp = sess.post('http://127.0.0.1/login', data=data)
-    print(resp.text)
+    # resp = sess.post('http://127.0.0.1/login', data=data)
+    # print(resp.text)
 
-    # resp = sess.get('http://127.0.0.1/login')
-    # soup = BeautifulSoup(resp.text, features="html.parser")
+    resp = sess.get('http://127.0.0.1/login')
+    soup = BeautifulSoup(resp.text, features="html.parser")
     # print(soup.find_all("input"))
     # print(soup.find_all(attrs={'class': 'button'}))
-    # csrf_token_tag = soup.find("input", attrs={'name': 'csrf_token'})
+    csrf_token_tag = soup.find("input", attrs={'name': 'csrf_token'})
     # print(csrf_token_tag)
     # print(csrf_token_tag['value'])
-    # csrf_token = csrf_token_tag['value']
+    csrf_token = csrf_token_tag['value']
 
-    # data['csrf_token'] = csrf_token
+    data['csrf_token'] = csrf_token
 
-    # resp = sess.post('http://127.0.0.1/login', data=data)
-    # print(resp.url)
+    resp = sess.post('http://127.0.0.1/login', data=data)

@@ -16,16 +16,24 @@ if __name__ == '__main__':
         'password': password
     }
 
-    resp = sess.post('http://127.0.0.1/login', data=data)
+    resp = sess.post('http://127.0.0.1/login', data=data, allow_redirects=False)
 
-    data = {
-        'name': 'nazwa',
-        'content': 'zawartosc'
-    }
+    # print(f'{resp.status_code=}')
+    # print(f'{resp.next.url=}')
 
-    # resp = sess.post('http://127.0.0.1/notes/', data=data)
-    print(f'{resp.status_code=}')
-    print(f'{sess.cookies.get_dict()=}')
-    print(f'{resp.headers=}')
-    # print(f'{resp.text=}')
-    # print(f'{resp.content=}')
+
+
+
+    if resp.next.url == 'http://127.0.0.1/login':
+        print('błąd logowania')
+    elif resp.next.url == 'http://127.0.0.1/profile':
+        print('logowanie udane')
+        print(f'{resp.next=}')
+        sess.send(resp.next)
+        # print(f'{resp.headers=}')
+        # print(f'{sess.cookies.get_dict()=}')
+        # print(f'{resp.json()=}')
+        print(f'{type(resp.text)=}')
+        print(f'{type(resp.content)=}')
+    else:
+        print('niespodziewany błąd')

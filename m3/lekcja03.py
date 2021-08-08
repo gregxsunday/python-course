@@ -23,21 +23,16 @@ if __name__ == '__main__':
         'content': 'zawartosc'
     }
 
-    sess.post('http://127.0.0.1/notes/', data=data)
+    # sess.post('http://127.0.0.1/notes/', data=data)
 
-    data = {
-        'name': 'nazwa',
-        'content': 'zawartosc'
-    }
-
-    sess.put('http://127.0.0.1/notes/', json=data)
+    # sess.put('http://127.0.0.1/notes/', json=data)
 
 
-    with open('lekcja03.py', 'r') as infile:
-        files = {
-            'myfile': infile.read()
-        }
-        sess.post('http://127.0.0.1/notes/', files=files)
+    # with open('lekcja03.py', 'r') as infile:
+    #     files = {
+    #         'myfile': infile.read()
+    #     }
+    #     sess.post('http://127.0.0.1/notes/', files=files)
 
     with open('lekcja03.py', 'r') as infile:
         files = {

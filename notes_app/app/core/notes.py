@@ -54,6 +54,7 @@ def create_note():
 
   if not name or not content:
     flash('Niewłaściwe żądanie')
+    notes = Note.query.filter_by(user=current_user)
     return render_template('notes/list_notes.html', nav='notes', notes=notes), 404
 
   note = Note(name=name, content=content, user=current_user)

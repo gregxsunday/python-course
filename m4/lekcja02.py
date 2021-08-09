@@ -1,9 +1,19 @@
 from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    login = db.Column(db.String(100), nullable=False, unique=True)
+    password = db.Column(db.String(100), nullable=False)
+
+db.create_all()
 
 @app.route("/", methods=["GET"])
 def hello():
-    # print(request.headers)
     hello = request.args.get('hello')
     if hello:
         return "Hello World!"
@@ -15,8 +25,11 @@ def hello():
 def test():
     login = request.form.get('login')
     password = request.form.get('password')
-    if login == 'admin' and password == 'qwerty':
-        return f'Logged in as {login}'
+    user = User.query.filter_by(login=login, password=password).first()
+    # query = f"SELECT * FROM User WHERE login='{login}' and password='{password}'"
+    # user = db.engine.execute(query).first()
+    if user:
+        return f'Logged in as {user.login}'
     return 'Invalid credentials'
 
 

@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -32,7 +33,7 @@ def login_page():
 <form action="/login" method="POST">
   <label for="login">Login:</label><br>
   <input type="text" id="login" name="login"><br>
-  <label for="password">Last name:</label><br>
+  <label for="password">Password:</label><br>
   <input type="password" id="password" name="password"><br><br>
   <input type="submit" value="Submit">
 </form> 

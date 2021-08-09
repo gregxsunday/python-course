@@ -1,10 +1,10 @@
 from flask import Flask, request, render_template
-from flask import templating
 from flask.templating import render_template_string
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class User(db.Model):
@@ -17,24 +17,26 @@ db.create_all()
 @app.route("/", methods=["GET"])
 def hello():
     hello = request.args.get('hello')
-    template = f'''<!DOCTYPE html>
+    hello2 = request.args.get('hello2')
+    template = '''<!DOCTYPE html>
 <html>
 <head>
 <title>Login</title>
 </head>
 <body>
 
-<h1>Hello!</h1>
-<p>{hello}</p>
+<h1>{{hello}}</h1>
+<p>''' + hello2 + '''</p>
 
 </body>
 </html>'''
-    return render_template_string(template)
+    return render_template_string(template, hello=hello)
 
 
 @app.route('/login', methods=["GET"])
 def login_page():
     return render_template('login.html')
+
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -42,10 +44,18 @@ def login():
     password = request.form.get('password')
     user = User.query.filter_by(login=login, password=password).first()
     # if user:
-    #     return render_template('post_login.html', header='Success!', message=f'Logged in as {user.login}')
-    # return render_template('post_login.html', header='Login failed.', message=f'Invalid credentials')
+    #     return render_template(
+    #         'post_login.html', 
+    #         header='Success!', 
+    #         message=f'Logged in as {user.login}'
+    #         )
+    # return render_template(
+    #     'post_login.html', 
+    #     header='Login failed.', 
+    #     message='Invalid credentials'
+    #     )
     
-    # return render_template('post_login2.html', user=user)
+    return render_template('post_login2.html', user=user)
 
 
 if __name__ == "__main__":

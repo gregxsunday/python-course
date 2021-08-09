@@ -4,7 +4,9 @@ app = Flask(__name__)
 @app.route("/", methods=["GET"])
 def hello():
     # print(request.headers)
+    # hello = request.args['hello']
     hello = request.args.get('hello')
+    print(hello)
     if hello:
         return "Hello World!"
     else:
@@ -12,7 +14,7 @@ def hello():
 
 
 @app.route("/login", methods=["POST"])
-def test():
+def login():
     login = request.form.get('login')
     password = request.form.get('password')
     if login == 'admin' and password == 'qwerty':

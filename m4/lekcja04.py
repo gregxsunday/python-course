@@ -19,17 +19,17 @@ def hello():
     hello = request.args.get('hello')
     hello2 = request.args.get('hello2')
     template = '''<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-</head>
-<body>
+    <html>
+    <head>
+    <title>Login</title>
+    </head>
+    <body>
 
-<h1>{{hello}}</h1>
-<p>''' + hello2 + '''</p>
+    <h1>{{hello}}</h1>
+    <p>''' + hello2 + '''</p>
 
-</body>
-</html>'''
+    </body>
+    </html>'''
     return render_template_string(template, hello=hello)
 
 

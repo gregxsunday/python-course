@@ -138,3 +138,5 @@ cython_debug/
 {"mode":"full","isActive":false}
 
 *.sqlite
+
+.DS_Store

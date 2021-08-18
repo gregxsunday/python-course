@@ -11,16 +11,19 @@ if __name__ == '__main__':
     key = 'haslomaslo'
 
     token = jwt.encode(payload=payload, headers=headers, key=key)
-    print(token)
+    # print(token)
 
-    decoded = jwt.decode(token, key=key, algorithms=['HS256'])
-    print(f'{decoded=}')
-    # decoded = jwt.decode(token, key='', algorithms=['HS256'], options={'verify_signature': False})
+    # decoded = jwt.decode(token, key=key, algorithms=['HS256'])
+    # print(f'{decoded=}')
+    # decoded = jwt.decode(token, key='', algorithms=['HS256'], options={'verify_signature': True})
     # print(f'{decoded=}')
 
     keys = ['qwerty', '123456', 'haslo', 'maslo', 'haslomaslo', 'asdfgh']
 
+
     for key in keys:
-        new_token = jwt.encode(payload=payload, headers=headers, key=key)
-        if new_token == token:
+        try:
+            decoded = jwt.decode('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiYWRtaW4ifQ.rDMVRRkhG_d9fv_OJZf_G3nrLngVjcaROzRBLM0iwbI', key=key, algorithms=['HS256'])
             print('found valid key:', key)
+        except jwt.exceptions.InvalidSignatureError:
+            pass

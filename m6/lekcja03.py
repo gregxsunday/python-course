@@ -19,7 +19,11 @@ def upload_file(sess, content, utf16=False):
 
 def create_session():
     sess = requests.Session()
-    sess.verify = False
+    # sess.verify = False
+    # sess.proxies = {
+    #     'http': 'http://127.0.0.1:8080',
+    #     'https': 'http://127.0.0.1:8080'
+    # }
     return sess
 
 
@@ -58,8 +62,8 @@ if __name__ == '__main__':
             utf = 'UTF-16' if utf16 else 'UTF-8'
 
             if foo:
-                print(f'{payload} {utf}', colored(foo.split('\n')[0], 'red'), end='\n\n', sep=': ')
+                print(f'{payload} {utf}:', colored(foo.split('\n')[0], 'red'))
             elif alert:
-                print(f'{payload} {utf}', colored(alert, 'yellow'), end='\n\n', sep=': ')
+                print(f'{payload} {utf}:', colored(alert, 'yellow'))
             else:
                 print(f'{payload} {utf}', colored('not vulnerable', 'yellow'))

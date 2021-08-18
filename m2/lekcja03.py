@@ -1,20 +1,30 @@
 if __name__ == '__main__':
-    # print(chr(65))
+    # infile = open('ffuf.log', 'r')
+    # logs = infile.read()
+    # print(logs)
+    # infile.close()
 
-    # print(ord('A'))
+    # with open('ffuf.log', 'r') as infile:
+    #     logs = infile.read()
+    #     print(logs)
 
-    # print(chr(0x41))
+    # with open('ffuf.log', 'r') as infile:
+    #     logs = infile.write('zapis')
 
-    # print(0x41 == 65)
+    # with open('test.txt', 'w') as outfile:
+    #     logs = outfile.write('zapis')
 
-    # a = int('0x41', 16)
+    # with open('test.txt', 'w') as outfile:
+    #     print('zapis', file=outfile)
 
-    # print(a)
+    # with open('test.txt', 'w') as outfile:
+    #     print('dopisanie', file=outfile)
 
-    # print('\x41')
+    # with open('test.txt', 'a') as outfile:
+    #     print('dopisanie', file=outfile)
 
-    # print('\n')
+    with open('test.txt', 'r+') as inoutfile:
+        log = inoutfile.read()
+        print('dopis', file=inoutfile)
 
-    # print('\x0a')
-
-    print('\n' == '\x0a')
+    

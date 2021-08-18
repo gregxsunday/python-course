@@ -2,15 +2,17 @@ if __name__ == '__main__':
     with open('ffuf.log', 'r') as infile:
         logs = infile.read()
 
-    # print(logs.split('\n'))
+    log = logs.split('\n')[0]
+    # print(f'{log=}')
 
-    for log in logs.split('\n'):
-        # print(f'linia: {log}')
-        log_split = log.split(' ')
-        # print(log_split)
-        path = log_split[0]
-        status_code = log_split[2]
-        size = log_split[4]
-        print(f'{path}|{status_code}|{size}')
+    log_split = log.split(' ')
+    print(f'{log_split=}')
+    # print(f'{log_split[0]=}')
+    # print(f'{log_split[2:4]=}')
+    # print(f'{log_split[:4]=}')
+    # print(f'{log_split[2:-2]=}')
+    # print(f'{log_split[:-1]=}')
+    # print(f'{log_split[:]=}')
+    # print(f'{log_split[-5:]=}')
+    print(f'{log_split[::2]=}')
 
-        print('|'.join([path, status_code, size]))

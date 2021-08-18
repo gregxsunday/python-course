@@ -1,25 +1,30 @@
-import re
-from termcolor import colored
-
-
 if __name__ == '__main__':
-    with open('ffuf.log', 'r') as infile:
-        logs = infile.read()
+    security = {
+        'vulns' : ['xss', 'rce', 'lfi']
+    }
+    # print(security['vulnerabilities'])
 
-    for log in logs.split('\n'):
-        log = log.replace(', ', ' ')
-        log_split = log.split(' ')
+    # try:
+    #     # print(security['vulnerabilities'])
+    #     print(security['vulns'][4])
+    # except KeyError:
+    #     print('no such key')
 
-        path = log_split[0]
-        status_code = log_split[2]
-        size = log_split[4]        
 
-        js = re.search('\.js$', path)
-        if js:
-            with open('js.txt', 'a') as outfile:
-                # print(path, status_code, size)
-                # print(path, status_code, size, file=outfile)
-                # print(f'{path}|{status_code}|{size}', file=outfile)
-                # print(path, status_code, size, file=outfile, sep='|')
-                # print(path, status_code, size, file=outfile, sep='|', end=';\n\n')
-                print(colored(path, 'red'), colored(status_code, 'green'), colored(size, 'blue'), sep='|', end=';\n')
+    # try:
+    #     print(security['vulns'][4])
+    # except (KeyError, IndexError):
+    #     print('no such key')
+
+
+    
+    try:
+        f = open('ffuf.log')
+        print(security['vulns'][4])
+    except KeyError:
+        print('no such key')
+    except IndexError as e:
+        print('IndexError:', e)
+    finally:
+        print('finally')
+        f.close()

@@ -1,30 +1,16 @@
 if __name__ == '__main__':
-    # infile = open('ffuf.log', 'r')
-    # logs = infile.read()
-    # print(logs)
-    # infile.close()
+    with open('ffuf.log', 'r') as infile:
+        logs = infile.read()
 
-    # with open('ffuf.log', 'r') as infile:
-    #     logs = infile.read()
-    #     print(logs)
+    # print(logs.split('\n'))
 
-    # with open('ffuf.log', 'r') as infile:
-    #     logs = infile.write('zapis')
+    for log in logs.split('\n'):
+        # print(f'linia: {log}')
+        log_split = log.split(' ')
+        # print(log_split)
+        path = log_split[0]
+        status_code = log_split[2]
+        size = log_split[4]
+        print(f'{path}|{status_code}|{size}')
 
-    # with open('test.txt', 'w') as outfile:
-    #     logs = outfile.write('zapis')
-
-    # with open('test.txt', 'w') as outfile:
-    #     print('zapis', file=outfile)
-
-    # with open('test.txt', 'w') as outfile:
-    #     print('dopisanie', file=outfile)
-
-    # with open('test.txt', 'a') as outfile:
-    #     print('dopisanie', file=outfile)
-
-    with open('test.txt', 'r+') as inoutfile:
-        log = inoutfile.read()
-        print('dopis', file=inoutfile)
-
-    
+        print('|'.join([path, status_code, size]))

@@ -1,5 +1,4 @@
-from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for, \
-    abort, jsonify, make_response
+from flask import Blueprint, render_template, redirect, url_for
 from app.database.models import User
 from sqlalchemy import exc
 from hashlib import sha256

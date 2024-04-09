@@ -6,7 +6,6 @@ from app.extensions import db
 import secrets
 from flask_login import LoginManager
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 import uuid
 from os import environ

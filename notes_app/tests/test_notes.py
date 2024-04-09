@@ -4,12 +4,14 @@ from hashlib import sha256
 import json
 import secrets
 
-from app import app, db
+from app import create_app
+from app.extensions import db
 from app.database.models import User, Note
+
 
 @pytest.fixture
 def client():
-    with app.test_client() as client:
+    with create_app().test_client() as client:
         login = secrets.token_urlsafe(16)
         password = secrets.token_urlsafe(16)
 
@@ -28,7 +30,6 @@ def client():
         yield client
 
 
-
 def test_creating_notes(client):
     user = User.query.filter_by(login='gniedziela').first()
     assert user
@@ -37,6 +38,7 @@ def test_creating_notes(client):
     db.session.commit()
 
     assert Note.query.filter_by(name='Testnote').first()
+
 
 def test_adding_note(client):
     data = {
@@ -47,7 +49,7 @@ def test_adding_note(client):
     resp = client.post('/notes/', data=data, follow_redirects=True)
     assert b'test name' in resp.data
 
+
 def test_getting_flag(client):
     resp = client.get('/notes/13')
     assert b'flag{' in resp.data
-

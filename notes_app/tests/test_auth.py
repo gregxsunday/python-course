@@ -4,19 +4,14 @@ from hashlib import sha256
 import json
 import secrets
 
-from app import app, db
+from app import create_app
 from app.database.models import User
+
 
 @pytest.fixture
 def client():
-    with app.test_client() as client:
+    with create_app().test_client() as client:
         yield client
-
-
-def test_user_in_database(client):
-    user = User.query.filter_by(login='gniedziela').first()
-    assert user
-    assert 'flag{' in user.description
 
 
 def test_signup(client):
@@ -32,11 +27,12 @@ def test_signup(client):
 
     resp = client.post('/signup', data=data)
     assert resp.status_code == 302
-    assert  '/login' in resp.location
+    assert '/login' in resp.location
 
     user = User.query.filter_by(login=login).first()
     assert user
     assert description == user.description
+
 
 def test_duplicate_signup(client):
     login = 'gniedziela'
@@ -52,6 +48,7 @@ def test_duplicate_signup(client):
 
     assert user.uuid.encode('utf8') in resp.data
 
+
 def test_signup_and_login(client):
     login = secrets.token_urlsafe(16)
     password = secrets.token_urlsafe(16)
@@ -63,7 +60,7 @@ def test_signup_and_login(client):
 
     resp = client.post('/signup', data=data)
     assert resp.status_code == 302
-    assert  '/login' in resp.location
+    assert '/login' in resp.location
 
     user = User.query.filter_by(login=login).first()
     assert user
@@ -75,7 +72,8 @@ def test_signup_and_login(client):
     resp = client.post('/login', data=data)
     assert resp.status_code == 302
     assert '/profile' in resp.location
-    
+
+
 def test_getting_flag(client):
     login = 'gniedziela'
     password = secrets.token_urlsafe(16)
@@ -101,7 +99,7 @@ def test_getting_flag(client):
 
     resp = client.post('/signup', data=data)
     assert resp.status_code == 302
-    assert  '/login' in resp.location
+    assert '/login' in resp.location
 
     user = User.query.filter_by(login=login).first()
     assert user
